@@ -1,7 +1,4 @@
-const player = (state = {
-  name: 'TomTom',
-  step: 0
-}, action) => {
+const player = (state = null, action) => {
     switch (action.type) {
       case 'CREATE_PLAYER':
         return {
