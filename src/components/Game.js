@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { pickImage, pickWrongImage, pickSameImage, countStep } from '../actions'
 import Card from './Card'
 import Timer from './Timer'
+import Scores from './Scores'
 
 class InitBoard extends React.Component {
     constructor(props) {
@@ -12,6 +13,11 @@ class InitBoard extends React.Component {
         this.dispatch = props.dispatch;
 
         this.isAnimated = false;
+
+        this.state = {
+            isAddingScore: false,
+            isAddingScoreError: false
+        }
     }
 
     onPickImage = (card) => {
@@ -44,36 +50,50 @@ class InitBoard extends React.Component {
         }
     }
 
-    // TODO: stocker les meilleurs scores
     // TODO: faire du design
     // TODO: plusieurs joueurs ?
 
     render() {
-        var cards = [];
-        for (let i = 0, l = this.cards.length; i < this.cards.length; i++) {
+        let cards = [];
+
+        for (let i = 0, l = this.cards.length; i < l; i++) {
             const card = this.cards[i];
 
             cards.push(<Card key={i + '_' + card.code} card={card} t={Date.now()} onPickImage={this.onPickImage} />)
         }
 
-
+        // Vérifie si la partie est finie
         if (this.props.deck.nbWin >= this.props.deck.difficulty) {
-            return (<p>Gagné en {this.props.player.step} coups !</p>)
+
+            const data = {
+                nbCards : this.props.deck.difficulty,
+                player: this.props.player.name,
+                step: this.props.player.step
+            }
+
+            return (
+                <div>
+                    <p>Gagné en {this.props.player.step} coups !</p>
+                    <Scores data={data} />
+                </div>
+            )
         }
 
-        var timer = Date.now() - this.props.deck.startTime;
+        else {
+            let timer = Date.now() - this.props.deck.startTime;
 
-        return (
-            <div>
-                <h1>Welcome {this.props.player.name} | {this.props.player.step} tries</h1>
+            return (
+                <div>
+                    <h1>Welcome {this.props.player.name} | {this.props.player.step} tries</h1>
 
-                <Timer timer={timer}/>
+                    <Timer timer={timer}/>
 
-                <div className={"cards cards-" + this.props.deck.difficulty}>
-                    {cards}
+                    <div className={"cards cards-" + this.props.deck.difficulty}>
+                        {cards}
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 }
 

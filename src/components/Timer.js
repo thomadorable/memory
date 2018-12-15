@@ -21,7 +21,7 @@ class Card extends React.Component {
 
     render() {
         
-        var time = this.formatDate();
+        const time = this.formatDate();
 
         return(
             <p>Timer !!! {time}</p>

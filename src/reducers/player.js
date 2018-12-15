@@ -1,18 +1,18 @@
 const player = (state = null, action) => {
     switch (action.type) {
-      case 'CREATE_PLAYER':
-        return {
-          ...action.player,
-          step: 0
-        };
-      case 'COUNT_USER_STEP':
-      return {
-        ...state,
-        step: state.step + 1
-      };
-      default:
-        return state
+        case 'CREATE_PLAYER':
+            return {
+                ...action.player,
+                step: 0
+            };
+        case 'COUNT_USER_STEP':
+            return {
+                ...state,
+                step: state.step + 1
+            };
+        default:
+            return state
     }
-  }
-  
-  export default player
+}
+
+export default player

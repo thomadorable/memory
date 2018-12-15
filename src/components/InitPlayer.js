@@ -15,7 +15,7 @@ class InitPlayer extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         console.log('submit !!', this.state.name)
-        var name = this.state.name.trim();
+        const name = this.state.name.trim();
         if (name.length > 0) {
             this.dispatch(createPlayer({name: name, step: 0}));
         }

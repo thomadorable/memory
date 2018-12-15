@@ -7,7 +7,7 @@ class InitBoard extends React.Component {
         super(props);
 
         this.options = [];
-        var values = [4, 6, 8, 10];
+        const values = [2, 4, 6, 8, 10];
         for (let i = 0, l = values.length; i < l; i++) {
             const value = values[i];
             this.options.push(<option key={value} value={value}>{value} x {value}</option>);
@@ -22,7 +22,7 @@ class InitBoard extends React.Component {
     }
 
     shuffle(a) {
-        var j, x, i;
+        let j, x, i;
         for (i = a.length - 1; i > 0; i--) {
             j = Math.floor(Math.random() * (i + 1));
             x = a[i];
@@ -33,11 +33,11 @@ class InitBoard extends React.Component {
     }
 
     generateCardsList(difficulty) {
-        var nbCards = difficulty * difficulty;
+        let nbCards = difficulty * difficulty;
 
-        var cards = [];
-        var values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 0, 'J', 'Q', 'K']
-        var suits = ['S', 'D', 'C', 'H'];
+        let cards = [];
+        const values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 0, 'J', 'Q', 'K']
+        const suits = ['S', 'D', 'C', 'H'];
         for (let i = 0, l = suits.length; i < l; i++) {
             const suit = suits[i];
             
@@ -51,7 +51,7 @@ class InitBoard extends React.Component {
 
         nbCards = (nbCards / 2);
 
-        var selectedCards = cards.splice(0, nbCards);
+        let selectedCards = cards.splice(0, nbCards);
         
         this.getApiDeck(selectedCards, nbCards);
     }
@@ -59,12 +59,11 @@ class InitBoard extends React.Component {
     getApiDeck (selectedCards, nbCards) {
         selectedCards = selectedCards.join(',');
 
-        var url = 'https://deckofcardsapi.com/api/deck/new/shuffle/?cards=' + selectedCards;
+        const url = 'https://deckofcardsapi.com/api/deck/new/shuffle/?cards=' + selectedCards;
 
-        console.log(url)
         fetch(url)
         .then((response) => {
-            var contentType = response.headers.get("content-type");
+            const contentType = response.headers.get("content-type");
             if(contentType && contentType.indexOf("application/json") !== -1) {
                 response.json().then((json) => {
                     this.getApiCardsFromDeck(json.deck_id, nbCards);
@@ -74,17 +73,15 @@ class InitBoard extends React.Component {
     }
 
     getApiCardsFromDeck = (id, nbCards) => {
-        var url = 'https://deckofcardsapi.com/api/deck/' + id + '/draw/?count=' + nbCards;
+        const url = 'https://deckofcardsapi.com/api/deck/' + id + '/draw/?count=' + nbCards;
 
-        console.log(url)
         fetch(url)
         .then((response) => {
-            var contentType = response.headers.get("content-type");
+            const contentType = response.headers.get("content-type");
             if(contentType && contentType.indexOf("application/json") !== -1) {
                 response.json().then((json) => {
-                    var cards = this.shuffle([...json.cards, ...json.cards]);
+                    const cards = this.shuffle([...json.cards, ...json.cards]);
                     this.cleanCards(cards);
-                    
                 });
             }
         });
@@ -106,7 +103,7 @@ class InitBoard extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        var difficulty = parseInt(this.state.difficulty);
+        const difficulty = parseInt(this.state.difficulty);
         if (difficulty > 0) {
             this.setState({
                 isLoading: true

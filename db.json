@@ -1,0 +1,34 @@
+{
+  "scores": [
+    {
+      "id": 1,
+      "player": "mille",
+      "step": 1000,
+      "nbCards": 2
+    },
+    {
+      "id": 2,
+      "player": "cinq cents",
+      "step": 500,
+      "nbCards": 2
+    },
+    {
+      "nbCards": 2,
+      "player": "rrrr",
+      "step": 6,
+      "id": 3
+    },
+    {
+      "nbCards": 2,
+      "player": "rrr",
+      "step": 4,
+      "id": 4
+    },
+    {
+      "nbCards": 2,
+      "player": "rrr",
+      "step": 6,
+      "id": 5
+    }
+  ]
+}
