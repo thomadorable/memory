@@ -1,0 +1,67 @@
+
+.cards {
+    margin: 0 auto;
+    width: 520px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.cards-img {
+    position: relative;
+    width: calc(100% / 4 - 10px);
+    /* border-radius: 10px; */
+    margin: 5px;
+    font-size: 0;
+}
+
+.cards-18 .cards-img {
+    width: calc(100% / 6 - 10px);
+}
+
+.cards-32 .cards-img {
+    width: calc(100% / 8 - 10px);
+}
+
+.cards-50 .cards-img {
+    width: calc(100% / 10 - 10px);
+}
+
+.cards-img.animated {
+    animation: flipflop ease 0.8s forwards;
+}
+
+.cards-img.hidden {
+    cursor: pointer;
+}
+
+.cards-img img {
+    width: 100%;
+}
+
+.back-img {
+    position: absolute;
+}
+
+.cards-img.animated .back-img {
+    animation: fadeOut ease 0.8s forwards;
+}
+
+@keyframes flipflop {
+    100% {
+        transform: rotateY(180deg) scaleX(-1);
+    }
+}
+
+/* 30% for easing animation, use 49-50 with linear */
+@keyframes fadeOut {
+    29% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
