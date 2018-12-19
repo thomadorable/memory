@@ -1,3 +1,130 @@
+/*RESET*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input, button {
+    background-color: transparent;
+    border-width: 0px;
+    outline: none;
+    text-align: center;
+}
+
+input::placeholder {
+    opacity: 0.8;
+}
+
+/* INIT */
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background: #e1eec3; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f05053, #e1eec3); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f05053, #e1eec3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.container form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.container.hide * {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+.container.show * {
+    animation: show-fade 0.25s ease-out;
+}
+
+@keyframes show-fade {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.container.submitted * {
+    transition: all 0.25s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.text-big {
+    font-size: 75px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 50px;
+    letter-spacing: 5px;
+}
+
+.text-current {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+
+.bt-full, .bt-border {
+    background-color: white;
+    padding: 10px 30px 12px;
+    border-radius: 50px;
+    font-size: 20px;
+    color: #f05053;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+    letter-spacing: 1px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bt-full:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.bt-full:hover, .bt-full:focus, .bt-border:hover, .bt-border:focus{
+    background-color: #EE6A65;
+    color: white;
+    padding: 10px 40px 12px;
+    border-color: #EE6A65;
+}
+
+.bt-border {
+    background-color: transparent;
+    border: solid 1px white;
+    color: white;
+    display: block;
+    /*margin: auto;*/
+    margin-bottom: 50px;
+}
+
+
+.timer {
+    position: absolute;
+    top: 65px;
+    left: 65px;
+}
+
+
+li {
+    list-style: none;
+}
+/*CARTES*/
 
 .cards {
     margin: 0 auto;
@@ -9,10 +136,12 @@
 
 .cards-img {
     position: relative;
-    width: calc(100% / 4 - 10px);
+    width: calc(100% / 4 - 20px);
     /* border-radius: 10px; */
-    margin: 5px;
+    margin: 10px;
     font-size: 0;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .cards-18 .cards-img {

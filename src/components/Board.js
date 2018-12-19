@@ -9,8 +9,8 @@ const Board = ({ player, deck }) => {
             <InitPlayer />
           )
     } else if (!deck) {
-        return (<div>
-            <h2>Bienvenue <strong>{player.name}</strong> 😎</h2>
+        return (<div className="container" id="init-board">
+            <h2 className="text-big">Bienvenue <strong>{player.name}</strong> 😎</h2>
             <InitBoard />
         </div>)
     } else {

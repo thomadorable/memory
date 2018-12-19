@@ -6,7 +6,8 @@ class InitPlayer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: ''
+            name: '',
+            classValue: 'container hide'
         }
 
         this.dispatch = props.dispatch;
@@ -14,22 +15,48 @@ class InitPlayer extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        console.log('submit !!', this.state.name)
         const name = this.state.name.trim();
+
         if (name.length > 0) {
-            this.dispatch(createPlayer({name: name, step: 0}));
+            document.getElementById("form-init-player").classList.add("submitted")
+
+            setTimeout(() => {
+                this.dispatch(createPlayer({name: name, step: 0}));
+                document.getElementById("init-board").classList.add("show")
+            }, 250)
         }
     }
 
     render() {
+
+        // lancer animation apparition
+        setTimeout(() => {
+            this.setState({
+                classValue: "container show"
+            })
+        }, 1)
+
         return (
-            <form onSubmit={this.onSubmit}>
-                <input type="text" placeholder="Name" onChange={(e) => {
+            <form
+                onSubmit={this.onSubmit}
+                className={this.state.classValue}
+                id="form-init-player">
+
+                <input
+                    type="text"
+                    placeholder="votre prénom"
+                    className="text-big"
+                    onChange={(e) => {
                     this.setState({
                         name: e.target.value
                     });
                 }} />
-                <button type="submit">Envoyer</button>
+
+                <button
+                    className="bt-full"
+                    type="submit"
+                >envoyer</button>
+
             </form>
         )
     }

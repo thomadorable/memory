@@ -7,7 +7,8 @@ class Scores extends React.Component {
         // prépare notre état
         this.state = {
             savingStatus: "Enregistrement en cours",
-            scores: []
+            scores: [],
+            bestScoreOpen: false
         }
 
         this.nbCards = props.data.nbCards
@@ -25,14 +26,15 @@ class Scores extends React.Component {
         }
 
         // ajoute le score dans le json
-        fetch(`http://localhost:3000/scores?nbCards=${this.nbCards}&_sort=step&_order=asc`, params)
+        fetch(`http://localhost:3000/scores?nbCards=${this.nbCards}&_sort=step&_order=asc&_limit=5`, params)
 
             .then((response) =>response.json() )
             .then((data) => {
 
                 for (let score of data) {
                     game.setState({
-                        scores: [...this.state.scores, {score}]
+                        scores: [...this.state.scores, {score}],
+                        bestScoreOpen: true
                     })
                 }
             })
@@ -76,7 +78,7 @@ class Scores extends React.Component {
         switch (type) {
             case  "success" :
                 this.setState({
-                    savingStatus: "Enregistrement du score validé"
+                    savingStatus: "Votre score a bien été enregistré"
                 })
                 break;
             default :
@@ -90,10 +92,10 @@ class Scores extends React.Component {
 
         return (
             <div>
-                <p>{this.state.savingStatus}</p>
-                <button onClick={this.showScores}>Afficher tous les scores</button>
+                <p className="text-current">{this.state.savingStatus}</p>
+                { this.state.bestScoreOpen ? null: <button className="bt-full" onClick={this.showScores}>Afficher les meilleurs scores</button> }
                 <ul>
-                    {this.state.scores.map( (item) => <li key={item.score.id}>{item.score.player} {item.score.step}</li> )}
+                    {this.state.scores.map( (item) => <li className="text-current" key={item.score.id}>{item.score.player} {item.score.step} </li> )}
                 </ul>
             </div>
         )

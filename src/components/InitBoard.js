@@ -113,17 +113,25 @@ class InitBoard extends React.Component {
     }
 
     render() {
-        if (this.state.isLoading) return ('LOADER.');
+        if (this.state.isLoading) return (
+            <p className="text-current">chargement</p>
+        );
         return (
             <form onSubmit={this.onSubmit}>
-                <select type="text" onChange={(e) => {
+                <select
+                    type="text"
+                    className="bt-border"
+                    onChange={(e) => {
                     this.setState({
                         difficulty: e.target.value
                     });
                 }}>
                     {this.options}
                 </select>
-                <button type="submit">Commencer</button>
+                <button
+                    className="bt-full"
+                    type="submit"
+                >Commencer</button>
             </form>
         )
     }

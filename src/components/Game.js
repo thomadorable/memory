@@ -16,7 +16,8 @@ class InitBoard extends React.Component {
 
         this.state = {
             isAddingScore: false,
-            isAddingScoreError: false
+            isAddingScoreError: false,
+            classValue: "container hide"
         }
     }
 
@@ -50,7 +51,10 @@ class InitBoard extends React.Component {
         }
     }
 
-    // TODO: faire du design
+    // TODO : gagné trop vite en voit pas la carte
+    // TODO : enregister le temps
+    // TODO : pause avec bt timer
+    // TODO : bt reset
     // TODO: plusieurs joueurs ?
 
     render() {
@@ -71,9 +75,15 @@ class InitBoard extends React.Component {
                 step: this.props.player.step
             }
 
+            setTimeout(() => {
+                this.setState({
+                    classValue: "container show"
+                })
+            }, 1)
+
             return (
-                <div>
-                    <p>Gagné en {this.props.player.step} coups !</p>
+                <div className={this.state.classValue}>
+                    <p className="text-big">Gagné en {this.props.player.step} coups !</p>
                     <Scores data={data} />
                 </div>
             )
@@ -82,9 +92,16 @@ class InitBoard extends React.Component {
         else {
             let timer = Date.now() - this.props.deck.startTime;
 
+            setTimeout(() => {
+                this.setState({
+                    classValue: "container show"
+                })
+            }, 1)
+
             return (
-                <div>
-                    <h1>Welcome {this.props.player.name} | {this.props.player.step} tries</h1>
+                <div className={this.state.classValue}>
+
+                    <h1 className="text-big">{this.props.player.name} | {this.props.player.step} tries</h1>
 
                     <Timer timer={timer}/>
 
