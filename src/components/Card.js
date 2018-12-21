@@ -1,16 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import backCard from '../assets/imgs/deck.jpg'
-import white from '../assets/imgs/white.png'
 
-// var images = require.context('../assets/imgs', true);
+var images = require.context('../assets/imgs', true);
 
 class Card extends React.Component {
     render() {
         const code = this.props.card.code;
         const status = this.props.card.status;
 
-        // let img_src = images('./cards/' + code + '.png')
+        let img_src = images('./' + code.split('')[1] + '.png')
         const animatedClass = (status === 0) ? '' : 'animated';
         const hiddenClass = (status === 0) ? ' hidden' : '';
 
@@ -21,8 +20,8 @@ class Card extends React.Component {
             }
         }} >
             <img src={backCard} className="back-img" alt={"back image" + code}/>
-            <div className={"card geometry-" + code.split('')[1]}>
-                <img src={white} alt={"image" + code} className="hide"/>
+            <div className="card">
+                <img src={img_src} alt={"image" + code} />
                 <p className="code">{code.split('')[0]}</p>
             </div>
         </div>)

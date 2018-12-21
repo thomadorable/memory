@@ -27,6 +27,9 @@ const deck = (state = null, action) => {
                 currentCard: undefined
             };
 
+        case 'RESET_GAME':
+            return null;
+
         case 'PICK_SAME_IMAGE':
             state.cards[action.cards.new].status = 2;
             state.cards[action.cards.former].status = 2;

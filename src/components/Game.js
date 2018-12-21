@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { pickImage, pickWrongImage, pickSameImage, countStep } from '../actions'
+import { pickImage, pickWrongImage, pickSameImage, countStep, resetGame } from '../actions'
 import Card from './Card'
 import Timer from './Timer'
 import Scores from './Scores'
@@ -23,7 +23,7 @@ class InitBoard extends React.Component {
         }
 
         setInterval(() => {
-            if (this.props.isPaused) return null;
+            if (this.state.isPaused) return null;
 
             this.setState({
                 time: this.state.time + 1
@@ -66,15 +66,17 @@ class InitBoard extends React.Component {
     }
 
 
-    toggleTimer = (e) => {
-        console.log('toggle timer');
+    toggleTimer = () => {
         this.setState({
             isPaused: !this.state.isPaused
         })
     }
 
-    // TODO : bt reset
-    // TODO: plusieurs joueurs ?
+    reset = (e) => {
+        this.dispatch(resetGame());
+    }
+
+    // TODO: middleware
 
     render() {
         let cards = [];
@@ -85,8 +87,14 @@ class InitBoard extends React.Component {
             cards.push(<Card key={i + '_' + card.code} card={card} t={Date.now()} onPickImage={this.onPickImage} />)
         }
 
+        console.log('render')
+
         // Vérifie si la partie est finie
         if (this.props.deck.nbWin >= this.props.deck.difficulty) {
+
+            if (!this.state.isPaused) {
+                this.toggleTimer();
+            }
 
             const data = {
                 nbCards : this.props.deck.difficulty,
@@ -97,21 +105,21 @@ class InitBoard extends React.Component {
 
             return (
                 <div className="container show">
-                    <p className="text-big">Gagné en {this.props.player.step} coups !</p>
+                    <p className="text-big">Gagné en {this.props.player.step} 👣 | ⏱ {data.time}s !</p>
+                    <button className="bt-border" onClick={this.reset}>Nouvelle partie</button>
                     <Scores data={data} />
                 </div>
             )
-        }
-
-        else {
-            let timer = this.props.deck.timer;
+        } else {
+            const tentatives = Math.floor(this.props.player.step / 2);
 
             return (
                 <div className="container show">
 
-                    <h1 className="text-big">{this.props.player.name} | {this.props.player.step} essai{this.props.player.step > 1 ? 's' : ''}</h1>
+                    <h1 className="text-big playername">{this.props.player.name} | {tentatives} 👣{tentatives > 1 ? 's' : ''}</h1>
 
                     <Timer time={this.state.time} isPaused={this.state.isPaused} toggleTimer={this.toggleTimer}/>
+                    <button className="bt-border reset" onClick={this.reset}>Changer difficulté</button>
 
                     <div className={"cards cards-" + this.props.deck.difficulty}>
                         {cards}

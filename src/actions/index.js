@@ -27,3 +27,13 @@ export const countStep = cards => ({
     type: 'COUNT_USER_STEP',
     cards
 })
+
+export const resetGame = () => ({
+    type: 'RESET_GAME'
+})
+
+export const generateCards = () => {
+    console.log('hello ???');
+
+    return ['a', 'b'];
+};

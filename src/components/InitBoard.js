@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { setBoard } from '../actions'
+import { generateCards } from '../actions'
 
 class InitBoard extends React.Component {
     constructor(props) {
@@ -58,7 +59,6 @@ class InitBoard extends React.Component {
     }
 
     getApiDeck (selectedCards, nbCards) {
-
         const url = 'https://deckofcardsapi.com/api/deck/new/shuffle/?cards=' + selectedCards;
 
         fetch(url)
@@ -109,6 +109,9 @@ class InitBoard extends React.Component {
                 isLoading: true
             });
             this.generateCardsList(difficulty);
+
+             //this.dispatch(generateCards());
+
         }
     }
 

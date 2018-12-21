@@ -38,10 +38,11 @@ class InitPlayer extends React.Component {
                     placeholder="votre prénom"
                     className="text-big"
                     onChange={(e) => {
-                    this.setState({
-                        name: e.target.value
-                    });
-                }} />
+                        this.setState({
+                            name: e.target.value
+                        });
+                    }} 
+                    value={this.state.name}/>
 
                 <button
                     className="bt-full"

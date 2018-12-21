@@ -74,6 +74,12 @@ select {
     letter-spacing: 5px;
 }
 
+.playername {
+    position: absolute;
+    top: 45px;
+    right: 50px;
+}
+
 .text-current {
     color: white;
     font-size: 14px;
@@ -126,7 +132,13 @@ select {
     left: 65px;
     width: 120px;
     text-align: left;
-    padding: 10px 16px;
+    padding: 10px 16px !important;
+}
+
+.reset {
+    position: absolute;
+    top: 140px;
+    left: 65px;
 }
 
 .emoji-pause {
@@ -144,6 +156,7 @@ li {
     margin: 0 auto;
     width: 100%;
     max-width: 520px;
+    margin-top: 100px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -170,6 +183,13 @@ li {
     width: calc(100% / 10 - 16px);
 }
 
+.cards-32 .code {
+    font-size: 30px;
+}
+.cards-50 .code {
+    font-size: 20px;
+}
+
 .cards-img.animated {
     animation: flipflop ease 0.8s forwards;
 }
@@ -182,10 +202,6 @@ li {
     width: 100%;
 }
 
-.cards-img img.hide {
-    opacity: 0;
-}
-
 .back-img {
     position: absolute;
     z-index: 1;
@@ -196,14 +212,18 @@ li {
 }
 
 .code {
-    font-size: 20px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    color: white;
+    text-align: right;
+    width: 70%;
+    font-size: 60px;
+    font-weight: bold;
 }
 
-.card.geometry-H {
+/* .card.geometry-H {
     background: rgb(151, 20, 53);
     color: white;
 }
@@ -216,12 +236,12 @@ li {
 .card.geometry-D {
     background: #11555e;
     color: white;
-}
+} */
 
-.card.geometry-C {
+/* .card.geometry-C {
     background: #e28d0e;
     color: white;
-}
+} */
 
 @keyframes flipflop {
     100% {
