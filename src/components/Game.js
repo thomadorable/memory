@@ -73,8 +73,6 @@ class InitBoard extends React.Component {
         })
     }
 
-    // TODO : enregister le temps
-    // TODO : filter score + temps
     // TODO : bt reset
     // TODO: plusieurs joueurs ?
 
