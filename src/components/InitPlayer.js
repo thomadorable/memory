@@ -7,7 +7,6 @@ class InitPlayer extends React.Component {
         super(props);
         this.state = {
             name: '',
-            classValue: 'container hide'
         }
 
         this.dispatch = props.dispatch;
@@ -28,18 +27,10 @@ class InitPlayer extends React.Component {
     }
 
     render() {
-
-        // lancer animation apparition
-        setTimeout(() => {
-            this.setState({
-                classValue: "container show"
-            })
-        }, 1)
-
         return (
             <form
                 onSubmit={this.onSubmit}
-                className={this.state.classValue}
+                className="container show"
                 id="form-init-player">
 
                 <input

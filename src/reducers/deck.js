@@ -4,7 +4,7 @@ const deck = (state = null, action) => {
             return {
                 cards: action.params.cards,
                 nbWin: 0,
-                startTime: Date.now(),
+                timer: 0,
                 difficulty: action.params.cards.length / 2
             };
 

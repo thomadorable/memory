@@ -17,11 +17,25 @@ class InitBoard extends React.Component {
         this.state = {
             isAddingScore: false,
             isAddingScoreError: false,
-            classValue: "container hide"
+            classValue: "container hide",
+            isPaused: false,
+            time: 0
         }
+
+        setInterval(() => {
+            if (this.props.isPaused) return null;
+
+            this.setState({
+                time: this.state.time + 1
+            })
+        }, 1000);
     }
 
     onPickImage = (card) => {
+        if (this.state.isPaused) {
+            return false;
+        }
+
         if (!this.isAnimated) {
             const indexCurrentCard = this.props.deck.currentCard;
             
@@ -51,9 +65,16 @@ class InitBoard extends React.Component {
         }
     }
 
-    // TODO : gagné trop vite en voit pas la carte
+
+    toggleTimer = (e) => {
+        console.log('toggle timer');
+        this.setState({
+            isPaused: !this.state.isPaused
+        })
+    }
+
     // TODO : enregister le temps
-    // TODO : pause avec bt timer
+    // TODO : filter score + temps
     // TODO : bt reset
     // TODO: plusieurs joueurs ?
 
@@ -72,17 +93,12 @@ class InitBoard extends React.Component {
             const data = {
                 nbCards : this.props.deck.difficulty,
                 player: this.props.player.name,
-                step: this.props.player.step
+                step: this.props.player.step,
+                time: this.state.time
             }
 
-            setTimeout(() => {
-                this.setState({
-                    classValue: "container show"
-                })
-            }, 1)
-
             return (
-                <div className={this.state.classValue}>
+                <div className="container show">
                     <p className="text-big">Gagné en {this.props.player.step} coups !</p>
                     <Scores data={data} />
                 </div>
@@ -90,20 +106,14 @@ class InitBoard extends React.Component {
         }
 
         else {
-            let timer = Date.now() - this.props.deck.startTime;
-
-            setTimeout(() => {
-                this.setState({
-                    classValue: "container show"
-                })
-            }, 1)
+            let timer = this.props.deck.timer;
 
             return (
-                <div className={this.state.classValue}>
+                <div className="container show">
 
-                    <h1 className="text-big">{this.props.player.name} | {this.props.player.step} tries</h1>
+                    <h1 className="text-big">{this.props.player.name} | {this.props.player.step} essai{this.props.player.step > 1 ? 's' : ''}</h1>
 
-                    <Timer timer={timer}/>
+                    <Timer time={this.state.time} isPaused={this.state.isPaused} toggleTimer={this.toggleTimer}/>
 
                     <div className={"cards cards-" + this.props.deck.difficulty}>
                         {cards}

@@ -1,130 +1,25 @@
 {
   "scores": [
     {
-      "id": 1,
-      "player": "mille",
-      "step": 1000,
-      "nbCards": 2
-    },
-    {
-      "id": 2,
-      "player": "cinq cents",
-      "step": 500,
-      "nbCards": 2
+      "nbCards": 2,
+      "player": "cha",
+      "step": 4,
+      "time": 4,
+      "id": 1
     },
     {
       "nbCards": 2,
-      "player": "rrrr",
-      "step": 6,
+      "player": "cha2",
+      "step": 8,
+      "time": 9,
+      "id": 2
+    },
+    {
+      "nbCards": 2,
+      "player": "cha3",
+      "step": 4,
+      "time": 2,
       "id": 3
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 4,
-      "id": 4
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 6,
-      "id": 5
-    },
-    {
-      "nbCards": 2,
-      "player": "rrrr",
-      "step": 4,
-      "id": 6
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 6,
-      "id": 7
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 6,
-      "id": 8
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 6,
-      "id": 9
-    },
-    {
-      "nbCards": 2,
-      "player": "sss",
-      "step": 4,
-      "id": 10
-    },
-    {
-      "nbCards": 2,
-      "player": "ddd",
-      "step": 4,
-      "id": 11
-    },
-    {
-      "nbCards": 2,
-      "player": "zzz",
-      "step": 6,
-      "id": 12
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 6,
-      "id": 13
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 6,
-      "id": 14
-    },
-    {
-      "nbCards": 2,
-      "player": "dddd",
-      "step": 6,
-      "id": 15
-    },
-    {
-      "nbCards": 2,
-      "player": "ddd",
-      "step": 4,
-      "id": 16
-    },
-    {
-      "nbCards": 2,
-      "player": "rrrr",
-      "step": 6,
-      "id": 17
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 6,
-      "id": 18
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 4,
-      "id": 19
-    },
-    {
-      "nbCards": 2,
-      "player": "rrr",
-      "step": 6,
-      "id": 20
-    },
-    {
-      "nbCards": 2,
-      "player": "hhh",
-      "step": 6,
-      "id": 21
     }
   ]
 }

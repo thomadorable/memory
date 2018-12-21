@@ -52,12 +52,12 @@ class InitBoard extends React.Component {
         nbCards = (nbCards / 2);
 
         let selectedCards = cards.splice(0, nbCards);
+        selectedCards = selectedCards.join(',');
         
         this.getApiDeck(selectedCards, nbCards);
     }
 
     getApiDeck (selectedCards, nbCards) {
-        selectedCards = selectedCards.join(',');
 
         const url = 'https://deckofcardsapi.com/api/deck/new/shuffle/?cards=' + selectedCards;
 

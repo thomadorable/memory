@@ -26,11 +26,10 @@ class Scores extends React.Component {
         }
 
         // ajoute le score dans le json
-        fetch(`http://localhost:3000/scores?nbCards=${this.nbCards}&_sort=step&_order=asc&_limit=5`, params)
+        fetch(`http://localhost:3000/scores?nbCards=${this.nbCards}&_sort=step,time&_order=asc&_limit=10`, params)
 
             .then((response) =>response.json() )
             .then((data) => {
-
                 for (let score of data) {
                     game.setState({
                         scores: [...this.state.scores, {score}],
@@ -95,7 +94,7 @@ class Scores extends React.Component {
                 <p className="text-current">{this.state.savingStatus}</p>
                 { this.state.bestScoreOpen ? null: <button className="bt-full" onClick={this.showScores}>Afficher les meilleurs scores</button> }
                 <ul>
-                    {this.state.scores.map( (item) => <li className="text-current" key={item.score.id}>{item.score.player} {item.score.step} </li> )}
+                    {this.state.scores.map( (item) => <li className="text-current" key={item.score.id}>nom: {item.score.player} essais:{item.score.step} temps: {item.score.time}s</li> )}
                 </ul>
             </div>
         )

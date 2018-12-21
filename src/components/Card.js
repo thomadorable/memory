@@ -1,24 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import backCard from '../assets/imgs/deck.jpg'
+import white from '../assets/imgs/white.png'
+
+// var images = require.context('../assets/imgs', true);
 
 class Card extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        const animatedClass = (this.props.card.status === 0) ? '' : 'animated';
-        const hiddenClass = (this.props.card.status === 0) ? ' hidden' : '';
+        const code = this.props.card.code;
+        const status = this.props.card.status;
+
+        // let img_src = images('./cards/' + code + '.png')
+        const animatedClass = (status === 0) ? '' : 'animated';
+        const hiddenClass = (status === 0) ? ' hidden' : '';
 
         return(
         <div  className={'cards-img ' + animatedClass + hiddenClass}  onClick={() => {
-            if (this.props.card.status === 0) {
+            if (status === 0) {
                 this.props.onPickImage(this.props.card);
             }
         }} >
-            <img src={backCard} className="back-img"/>
-            <img src={this.props.card.image}/>
+            <img src={backCard} className="back-img" alt={"back image" + code}/>
+            <div className={"card geometry-" + code.split('')[1]}>
+                <img src={white} alt={"image" + code} className="hide"/>
+                <p className="code">{code.split('')[0]}</p>
+            </div>
         </div>)
     }
 }
